@@ -16,8 +16,8 @@ namespace AddressBookSystem
 
         public void CreatContact()
         {
-            Console.WriteLine(" *************** Crateing New Contact ");
-            Console.Write("Frist Name: ");
+            Console.WriteLine(" *************** Creating New Contact ");
+            Console.Write("First Name: ");
             contact.FirstName = Console.ReadLine();
             Console.Write("Last Name: ");
             contact.LastName = Console.ReadLine();
@@ -27,7 +27,7 @@ namespace AddressBookSystem
             contact.City = Console.ReadLine();
             Console.Write("State: ");
             contact.State = Console.ReadLine();
-            Console.Write("ZipCode: ");
+            Console.Write("Zip Code: ");
             contact.Zipcode = Convert.ToInt32(Console.ReadLine());
             Console.Write("Phone Number: ");
             contact.PhoneNumber = Console.ReadLine();
@@ -71,28 +71,28 @@ namespace AddressBookSystem
                         switch (option)
                         {
                             case 1:
-                                Console.WriteLine("Enter The New Address");
+                                Console.Write("Enter The New Address: ");
                                 contact.Address = Console.ReadLine();
                                 break;
 
                             case 2:
-                                Console.WriteLine("Enter The New City");
+                                Console.Write("Enter The New City: ");
                                 contact.City = Console.ReadLine();
                                 break;
                             case 3:
-                                Console.WriteLine("Enter The New State");
+                                Console.Write("Enter The New State: ");
                                 contact.State = Console.ReadLine();
                                 break;
                             case 4:
-                                Console.WriteLine("Enter The New Zipcode");
+                                Console.Write("Enter The New Zipcode: ");
                                 contact.Zipcode = Convert.ToInt32(Console.ReadLine());
                                 break;
                             case 5:
-                                Console.WriteLine("Enter The New Phone Number");
+                                Console.Write("Enter The New Phone Number: ");
                                 contact.PhoneNumber = Console.ReadLine();
                                 break;
                             case 6:
-                                Console.WriteLine("Enter The New Email");
+                                Console.Write("Enter The New Email: ");
                                 contact.Email = Console.ReadLine();
                                 break;
                         }
