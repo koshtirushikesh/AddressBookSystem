@@ -36,6 +36,7 @@ namespace AddressBookSystem
 
             contactsList.Add(contact);
         }
+
         public void Display()
         {
             foreach (var contact in contactsList)
@@ -58,7 +59,7 @@ namespace AddressBookSystem
                 if (contact.FirstName.Equals(name))
                 {
                     char input = 'y';
-                    while (input=='y')
+                    while (input == 'y')
                     {
                         Console.WriteLine("1. Address");
                         Console.WriteLine("2. City");
@@ -98,11 +99,27 @@ namespace AddressBookSystem
                         }
                         Console.Write("Do you want to chang any thing else: (y = YES,n = NO): ");
                         input = Convert.ToChar(Console.ReadLine());
-                    } 
+                    }
                 }
                 else
                 {
                     Console.WriteLine("Contact not found: " + name);
+                }
+            }
+        }
+
+        public void Delete(string name)
+        {
+
+            foreach (var contact in contactsList)
+            {
+                if (contact.FirstName == name)
+                {
+                    contactsList.Remove(contact);
+                    break;
+                }else
+                {
+                    Console.WriteLine("Contact name not found "); 
                 }
             }
         }

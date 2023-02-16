@@ -19,7 +19,8 @@ namespace AddressBookSystem
                 Console.WriteLine("\n1. Create Contact");
                 Console.WriteLine("2. Display All Contact");
                 Console.WriteLine("3. Edit The contact");
-                Console.WriteLine("4. Exit the program");
+                Console.WriteLine("4. Delete The contact");
+                Console.WriteLine("5. Exit the program");
                 Console.Write("Enter option: ");
                 int option = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("");
@@ -34,8 +35,13 @@ namespace AddressBookSystem
                         addressBook.Edit(name);
                         addressBook.Display();
                         break;
-                  
-                    case 4: flag = false; break;
+
+                    case 4:
+                        Console.Write("enter the name of contact to Delete: ");
+                        name = Console.ReadLine();
+                        addressBook.Delete(name);
+                        break;
+                    case 5: flag = false; break;
                 }
             }
         }
