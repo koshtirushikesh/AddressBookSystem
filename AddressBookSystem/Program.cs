@@ -29,7 +29,7 @@ namespace AddressBookSystem
                     case 1: addressBook.CreatContact(); break;
                     case 2: addressBook.Display(); break;
                     case 3:
-                        Console.Write("enter the name to Edit: ");
+                        Console.Write("enter the name of contact to Edit: ");
                         string name = Console.ReadLine();
                         addressBook.Edit(name);
                         addressBook.Display();

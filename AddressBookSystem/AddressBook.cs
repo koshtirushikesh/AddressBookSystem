@@ -98,8 +98,6 @@ namespace AddressBookSystem
                         }
                         Console.Write("Do you want to chang any thing else: (y = YES,n = NO): ");
                         input = Convert.ToChar(Console.ReadLine());
-                        if (input == 'n')
-                            break;
                     } 
                 }
                 else
