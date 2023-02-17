@@ -16,6 +16,7 @@ namespace AddressBookSystem
 
         public void CreatContact()
         {
+            Contact contact = new Contact();
             Console.WriteLine(" *************** Creating New Contact ");
             Console.Write("First Name: ");
             contact.FirstName = Console.ReadLine();
@@ -116,6 +117,7 @@ namespace AddressBookSystem
                 if (contact.FirstName == name)
                 {
                     contactsList.Remove(contact);
+                    Console.WriteLine("Contact deleted successfully");
                     break;
                 }else
                 {
