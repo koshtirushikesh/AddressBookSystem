@@ -168,6 +168,12 @@ namespace AddressBookSystem
             }
         }
 
-        
+        public void CountByCity()
+        {
+            Console.Write("Enter the City Name: ");
+            string CityName = Console.ReadLine();
+            int count = contactsList.Count(x => x.City == CityName);
+            Console.WriteLine(CityName + ": " + count);
+        }
     }
 }
