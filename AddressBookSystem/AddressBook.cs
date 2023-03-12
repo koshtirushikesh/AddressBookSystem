@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AddressBookSystem
 {
@@ -13,7 +7,7 @@ namespace AddressBookSystem
     {
         Contact contact = new Contact();
         List<Contact> contactsList = new List<Contact>();
-        Dictionary<string,Contact> addressBookDictonary = new Dictionary<string,Contact>();
+        Dictionary<string, Contact> addressBookDictonary = new Dictionary<string, Contact>();
 
         public void CreatContact()
         {
@@ -39,10 +33,11 @@ namespace AddressBookSystem
             if (contactsList.Contains(contact))
             {
                 Console.WriteLine("this Person is already in the collection. ");
-            }else
+            }
+            else
             {
                 contactsList.Add(contact);
-                addressBookDictonary.Add(contact.FirstName,contact);
+                addressBookDictonary.Add(contact.FirstName, contact);
                 Console.WriteLine("this Person is successfully add to the collection. ");
             }
         }
@@ -123,17 +118,29 @@ namespace AddressBookSystem
 
             foreach (var contact in addressBookDictonary)
             {
-                if(addressBookDictonary.ContainsKey(name))
+                if (addressBookDictonary.ContainsKey(name))
                 //if (contact.FirstName == name)
                 {
                     //contactsList.Remove(contact);
                     addressBookDictonary.Remove(name);
                     Console.WriteLine("Contact deleted successfully");
                     break;
-                }else
-                {
-                    Console.WriteLine("Contact name not found "); 
                 }
+                else
+                {
+                    Console.WriteLine("Contact name not found ");
+                }
+            }
+        }
+
+        public void SearchByCity()
+        {
+            Console.Write("Enter the City Name: ");
+            string CityName = Console.ReadLine();
+            Console.WriteLine("All the Contact of: " + CityName);
+            foreach (var contact in contactsList.FindAll(x => x.City == CityName))
+            {
+                Console.WriteLine("Name: " + contact.FirstName + " " + contact.LastName);
             }
         }
     }
