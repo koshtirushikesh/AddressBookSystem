@@ -9,6 +9,7 @@ namespace AddressBookSystem
         Contact contact = new Contact();
         List<Contact> contactsList = new List<Contact>();
         Dictionary<string, Contact> addressBookDictonary = new Dictionary<string, Contact>();
+        Dictionary<string, List<Contact>> addressBookDictonaryByCity = new Dictionary<string, List<Contact>>();
 
         public void CreatContact()
         {
@@ -151,6 +152,9 @@ namespace AddressBookSystem
             string CityName = Console.ReadLine();
             Console.WriteLine("All the Contact details of: " + CityName);
 
+            List<Contact> contactByCity = contactsList.FindAll(x => x.City == CityName);
+            addressBookDictonaryByCity.Add(CityName, contactByCity);
+
             foreach (var contact in contactsList.FindAll(x => x.City == CityName))
             {
                 Console.WriteLine("\nContact Details\n" + "\n" + "First Name: " + contact.FirstName);
@@ -163,5 +167,7 @@ namespace AddressBookSystem
                 Console.WriteLine("E mail: " + contact.Email);
             }
         }
+
+        
     }
 }
