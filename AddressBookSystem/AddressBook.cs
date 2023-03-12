@@ -38,12 +38,12 @@ namespace AddressBookSystem
 
             if (contactsList.Contains(contact))
             {
-                Console.WriteLine("this Person is already in the collection.");
+                Console.WriteLine("this Person is already in the collection. ");
             }else
             {
                 contactsList.Add(contact);
                 addressBookDictonary.Add(contact.FirstName,contact);
-                Console.WriteLine("this Person is successfully add to the collection.");
+                Console.WriteLine("this Person is successfully add to the collection. ");
             }
         }
 
