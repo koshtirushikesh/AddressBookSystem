@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AddressBookSystem
 {
@@ -137,10 +138,29 @@ namespace AddressBookSystem
         {
             Console.Write("Enter the City Name: ");
             string CityName = Console.ReadLine();
-            Console.WriteLine("All the Contact of: " + CityName);
+            Console.WriteLine("All the Contact Name of: " + CityName);
             foreach (var contact in contactsList.FindAll(x => x.City == CityName))
             {
                 Console.WriteLine("Name: " + contact.FirstName + " " + contact.LastName);
+            }
+        }
+        
+        public void ViewByCity()
+        {
+            Console.Write("Enter the City Name: ");
+            string CityName = Console.ReadLine();
+            Console.WriteLine("All the Contact details of: " + CityName);
+
+            foreach (var contact in contactsList.FindAll(x => x.City == CityName))
+            {
+                Console.WriteLine("\nContact Details\n" + "\n" + "First Name: " + contact.FirstName);
+                Console.WriteLine("Last Name: " + contact.LastName);
+                Console.WriteLine("Address: " + contact.Address);
+                Console.WriteLine("City: " + contact.City);
+                Console.WriteLine("State: " + contact.State);
+                Console.WriteLine("Zip Code: " + contact.Zipcode);
+                Console.WriteLine("PhoneNumber: " + contact.PhoneNumber);
+                Console.WriteLine("E mail: " + contact.Email);
             }
         }
     }
