@@ -13,6 +13,7 @@ namespace AddressBookSystem
     {
         Contact contact = new Contact();
         List<Contact> contactsList = new List<Contact>();
+        Dictionary<string,Contact> addressBookDictonary = new Dictionary<string,Contact>();
 
         public void CreatContact()
         {
@@ -35,29 +36,37 @@ namespace AddressBookSystem
             Console.Write("Email: ");
             contact.Email = Console.ReadLine();
 
-            contactsList.Add(contact);
+            if (contactsList.Contains(contact))
+            {
+                Console.WriteLine("this Person is already in the collection.");
+            }else
+            {
+                contactsList.Add(contact);
+                addressBookDictonary.Add(contact.FirstName,contact);
+                Console.WriteLine("this Person is successfully add to the collection.");
+            }
         }
 
         public void Display()
         {
-            foreach (var contact in contactsList)
+            foreach (var contact in addressBookDictonary)
             {
-                Console.WriteLine("\nContact Details\n" + "\n" + "First Name: " + contact.FirstName);
-                Console.WriteLine("Last Name: " + contact.LastName);
-                Console.WriteLine("Address: " + contact.Address);
-                Console.WriteLine("City: " + contact.City);
-                Console.WriteLine("State: " + contact.State);
-                Console.WriteLine("Zip Code: " + contact.Zipcode);
-                Console.WriteLine("PhoneNumber: " + contact.PhoneNumber);
-                Console.WriteLine("E mail: " + contact.Email);
+                Console.WriteLine("\nContact Details\n" + "\n" + "First Name: " + contact.Value.FirstName);
+                Console.WriteLine("Last Name: " + contact.Value.LastName);
+                Console.WriteLine("Address: " + contact.Value.Address);
+                Console.WriteLine("City: " + contact.Value.City);
+                Console.WriteLine("State: " + contact.Value.State);
+                Console.WriteLine("Zip Code: " + contact.Value.Zipcode);
+                Console.WriteLine("PhoneNumber: " + contact.Value.PhoneNumber);
+                Console.WriteLine("E mail: " + contact.Value.Email);
             }
         }
 
         public void Edit(string name)
         {
-            foreach (var contact in contactsList)
+            foreach (var contact in addressBookDictonary)
             {
-                if (contact.FirstName.Equals(name))
+                if (contact.Key.Equals(name))
                 {
                     char input = 'y';
                     while (input == 'y')
@@ -74,28 +83,28 @@ namespace AddressBookSystem
                         {
                             case 1:
                                 Console.Write("Enter The New Address: ");
-                                contact.Address = Console.ReadLine();
+                                contact.Value.Address = Console.ReadLine();
                                 break;
 
                             case 2:
                                 Console.Write("Enter The New City: ");
-                                contact.City = Console.ReadLine();
+                                contact.Value.City = Console.ReadLine();
                                 break;
                             case 3:
                                 Console.Write("Enter The New State: ");
-                                contact.State = Console.ReadLine();
+                                contact.Value.State = Console.ReadLine();
                                 break;
                             case 4:
                                 Console.Write("Enter The New Zipcode: ");
-                                contact.Zipcode = Convert.ToInt32(Console.ReadLine());
+                                contact.Value.Zipcode = Convert.ToInt32(Console.ReadLine());
                                 break;
                             case 5:
                                 Console.Write("Enter The New Phone Number: ");
-                                contact.PhoneNumber = Console.ReadLine();
+                                contact.Value.PhoneNumber = Console.ReadLine();
                                 break;
                             case 6:
                                 Console.Write("Enter The New Email: ");
-                                contact.Email = Console.ReadLine();
+                                contact.Value.Email = Console.ReadLine();
                                 break;
                         }
                         Console.Write("Do you want to chang any thing else: (y = YES,n = NO): ");
@@ -112,11 +121,13 @@ namespace AddressBookSystem
         public void Delete(string name)
         {
 
-            foreach (var contact in contactsList)
+            foreach (var contact in addressBookDictonary)
             {
-                if (contact.FirstName == name)
+                if(addressBookDictonary.ContainsKey(name))
+                //if (contact.FirstName == name)
                 {
-                    contactsList.Remove(contact);
+                    //contactsList.Remove(contact);
+                    addressBookDictonary.Remove(name);
                     Console.WriteLine("Contact deleted successfully");
                     break;
                 }else
