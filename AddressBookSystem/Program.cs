@@ -33,16 +33,20 @@ namespace AddressBookSystem
                     case 1: addressBook.CreatContact(); break;
                     case 2: addressBook.Display(); break;
                     case 3:
-                        Console.Write("enter the name of contact to Edit: ");
-                        string name = Console.ReadLine();
-                        addressBook.Edit(name);
+                        Console.Write("enter the first name of contact to Edit: ");
+                        string firstName = Console.ReadLine();
+                        Console.Write("enter the last name of contact to Edit: ");
+                        string lastName = Console.ReadLine();
+                        addressBook.Edit(firstName,lastName);
                         addressBook.Display();
                         break;
 
                     case 4:
-                        Console.Write("enter the name of contact to Delete: ");
-                        name = Console.ReadLine();
-                        addressBook.Delete(name);
+                        Console.Write("enter the first name of contact to Delete: ");
+                        firstName = Console.ReadLine();
+                        Console.Write("enter the last name of contact to Delete: ");
+                        lastName = Console.ReadLine();
+                        addressBook.Delete(firstName,lastName);
                         break;
                     case 5: addressBook.SearchByCity();break;
                     case 6: addressBook.ViewByCity();break;

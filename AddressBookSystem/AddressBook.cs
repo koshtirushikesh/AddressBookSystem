@@ -39,7 +39,7 @@ namespace AddressBookSystem
             else
             {
                 contactsList.Add(contact);
-                addressBookDictonary.Add(contact.FirstName, contact);
+                addressBookDictonary.Add(contact.FirstName+contact.LastName, contact);
                 Console.WriteLine("this Person is successfully add to the collection. ");
             }
         }
@@ -59,11 +59,11 @@ namespace AddressBookSystem
             }
         }
 
-        public void Edit(string name)
+        public void Edit(string firstName,string lastName)
         {
             foreach (var contact in addressBookDictonary)
             {
-                if (contact.Key.Equals(name))
+                if (contact.Key.Equals(firstName+lastName))
                 {
                     char input = 'y';
                     while (input == 'y')
@@ -110,21 +110,21 @@ namespace AddressBookSystem
                 }
                 else
                 {
-                    Console.WriteLine("Contact not found: " + name);
+                    Console.WriteLine("Contact not found: " + firstName +" "+ lastName);
                 }
             }
         }
 
-        public void Delete(string name)
+        public void Delete(string firstName,string lastName)
         {
 
             foreach (var contact in addressBookDictonary)
             {
-                if (addressBookDictonary.ContainsKey(name))
+                if (addressBookDictonary.ContainsKey(firstName + lastName))
                 //if (contact.FirstName == name)
                 {
                     //contactsList.Remove(contact);
-                    addressBookDictonary.Remove(name);
+                    addressBookDictonary.Remove(firstName + lastName);
                     Console.WriteLine("Contact deleted successfully");
                     break;
                 }
