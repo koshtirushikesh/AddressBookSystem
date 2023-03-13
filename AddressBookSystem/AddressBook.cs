@@ -66,7 +66,7 @@ namespace AddressBookSystem
                     addressBookDictonaryByCity.Add(contact.City,new List<Contact>());
                     addressBookDictonaryByCity[contact.City].Add(contact);
                 }
-                Console.WriteLine("this Person is successfully add to the collection. *");
+                Console.WriteLine("\nthis Person is successfully add to the collection.");
             }
         }
 
@@ -164,7 +164,7 @@ namespace AddressBookSystem
         {
             Console.Write("Enter the City Name: ");
             string CityName = Console.ReadLine();
-            Console.WriteLine("All the Contact Name of: " + CityName);
+            Console.WriteLine("All the Contact Name of: " + CityName+"\n");
             foreach (var contact in addressBookDictonaryByCity[CityName])
             {
                 Console.WriteLine("Name: " + contact.FirstName + " " + contact.LastName);
@@ -175,7 +175,7 @@ namespace AddressBookSystem
         {
             Console.Write("Enter the City Name: ");
             string CityName = Console.ReadLine();
-            Console.WriteLine("All the Contact details of: " + CityName);
+            Console.WriteLine("\nAll the Contact details of: " + CityName+"\n");
 
             foreach(var contact in addressBookDictonaryByCity[CityName])
             {
@@ -194,8 +194,8 @@ namespace AddressBookSystem
         {
             Console.Write("Enter the City Name: ");
             string CityName = Console.ReadLine();
-            int count = contactsList.Count(x => x.City == CityName);
-            Console.WriteLine(CityName + ": " + count);
+            int count = addressBookDictonaryByCity[CityName].Count(x => x.City == CityName);
+            Console.WriteLine("\nCity Name : "+CityName + ": No of Contact : " + count);
         }
     }
 }

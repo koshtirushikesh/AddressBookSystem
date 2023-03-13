@@ -22,9 +22,10 @@ namespace AddressBookSystem
                 Console.WriteLine("4. Delete The contact");
                 Console.WriteLine("5. Search By city");
                 Console.WriteLine("6. view By city");
-                Console.WriteLine("7. Exit the program");
+                Console.WriteLine("7. Count By city");
+                Console.WriteLine("8. Exit the program");
                 
-                Console.Write("Enter option: ");
+                Console.Write("\nEnter option: ");
                 int option = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("");
                 
@@ -50,7 +51,8 @@ namespace AddressBookSystem
                         break;
                     case 5: addressBook.SearchByCity();break;
                     case 6: addressBook.ViewByCity();break;
-                    case 7: flag = false; break;
+                    case 7: addressBook.CountByCity();break;
+                    case 8: flag = false; break;
                 }
             }
         }
