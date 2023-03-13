@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace AddressBookSystem
 {
@@ -13,12 +14,27 @@ namespace AddressBookSystem
 
         public void CreatContact()
         {
+            bool flage = true;
             Contact contact = new Contact();
+
             Console.WriteLine(" *************** Creating New Contact ");
-            Console.Write("First Name: ");
-            contact.FirstName = Console.ReadLine();
-            Console.Write("Last Name: ");
-            contact.LastName = Console.ReadLine();
+            while (flage)
+            {
+                Console.Write("First Name: ");
+                contact.FirstName = Console.ReadLine();
+                Console.Write("Last Name: ");
+                contact.LastName = Console.ReadLine();
+
+                if (contactsList.Any(x => x.FirstName == contact.FirstName && x.LastName == contact.LastName))
+                {
+                    Console.WriteLine("\nthis Person is already in the collection. \n");
+                }
+                else
+                {
+                    flage = false;
+                }
+            }
+
             Console.Write("Address: ");
             contact.Address = Console.ReadLine();
             Console.Write("City: ");
@@ -26,21 +42,31 @@ namespace AddressBookSystem
             Console.Write("State: ");
             contact.State = Console.ReadLine();
             Console.Write("Zip Code: ");
-            contact.Zipcode = Convert.ToInt32(Console.ReadLine());
+            contact.Zipcode = Console.ReadLine();
             Console.Write("Phone Number: ");
             contact.PhoneNumber = Console.ReadLine();
             Console.Write("Email: ");
             contact.Email = Console.ReadLine();
 
-            if (contactsList.Contains(contact))
+            if (contactsList.Any(x => x.FirstName == contact.FirstName && x.LastName == contact.LastName))
             {
-                Console.WriteLine("this Person is already in the collection. ");
+                Console.WriteLine("\nthis Person is already in the collection. ");
             }
             else
             {
                 contactsList.Add(contact);
-                addressBookDictonary.Add(contact.FirstName+contact.LastName, contact);
-                Console.WriteLine("this Person is successfully add to the collection. ");
+                addressBookDictonary.Add(contact.FirstName + contact.LastName, contact);
+                
+                if(addressBookDictonaryByCity.ContainsKey(contact.City))
+                {
+                     addressBookDictonaryByCity[contact.City].Add(contact);
+                }
+                else
+                {
+                    addressBookDictonaryByCity.Add(contact.City,new List<Contact>());
+                    addressBookDictonaryByCity[contact.City].Add(contact);
+                }
+                Console.WriteLine("this Person is successfully add to the collection. *");
             }
         }
 
@@ -59,11 +85,11 @@ namespace AddressBookSystem
             }
         }
 
-        public void Edit(string firstName,string lastName)
+        public void Edit(string firstName, string lastName)
         {
             foreach (var contact in addressBookDictonary)
             {
-                if (contact.Key.Equals(firstName+lastName))
+                if (contact.Key.Equals(firstName + lastName))
                 {
                     char input = 'y';
                     while (input == 'y')
@@ -93,7 +119,7 @@ namespace AddressBookSystem
                                 break;
                             case 4:
                                 Console.Write("Enter The New Zipcode: ");
-                                contact.Value.Zipcode = Convert.ToInt32(Console.ReadLine());
+                                contact.Value.Zipcode = Console.ReadLine();
                                 break;
                             case 5:
                                 Console.Write("Enter The New Phone Number: ");
@@ -110,14 +136,13 @@ namespace AddressBookSystem
                 }
                 else
                 {
-                    Console.WriteLine("Contact not found: " + firstName +" "+ lastName);
+                    Console.WriteLine("Contact not found: " + firstName + " " + lastName);
                 }
             }
         }
 
-        public void Delete(string firstName,string lastName)
+        public void Delete(string firstName, string lastName)
         {
-
             foreach (var contact in addressBookDictonary)
             {
                 if (addressBookDictonary.ContainsKey(firstName + lastName))
@@ -140,22 +165,19 @@ namespace AddressBookSystem
             Console.Write("Enter the City Name: ");
             string CityName = Console.ReadLine();
             Console.WriteLine("All the Contact Name of: " + CityName);
-            foreach (var contact in contactsList.FindAll(x => x.City == CityName))
+            foreach (var contact in addressBookDictonaryByCity[CityName])
             {
                 Console.WriteLine("Name: " + contact.FirstName + " " + contact.LastName);
             }
         }
-        
+
         public void ViewByCity()
         {
             Console.Write("Enter the City Name: ");
             string CityName = Console.ReadLine();
             Console.WriteLine("All the Contact details of: " + CityName);
 
-            List<Contact> contactByCity = contactsList.FindAll(x => x.City == CityName);
-            addressBookDictonaryByCity.Add(CityName, contactByCity);
-
-            foreach (var contact in contactsList.FindAll(x => x.City == CityName))
+            foreach(var contact in addressBookDictonaryByCity[CityName])
             {
                 Console.WriteLine("\nContact Details\n" + "\n" + "First Name: " + contact.FirstName);
                 Console.WriteLine("Last Name: " + contact.LastName);
