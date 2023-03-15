@@ -22,7 +22,9 @@ namespace AddressBookSystem
                 Console.WriteLine("8. Sort Address book By First Name");
                 Console.WriteLine("9. Sort Address book By City Name");
                 Console.WriteLine("10. Sort Address book By State Name");
-                Console.WriteLine("11. Exit the program");
+                Console.WriteLine("11. Write Text File");
+                Console.WriteLine("12. Read Text File");
+                Console.WriteLine("13. Exit the program");
 
                 Console.Write("\nEnter option: ");
                 int option = Convert.ToInt32(Console.ReadLine());
@@ -54,7 +56,9 @@ namespace AddressBookSystem
                     case 8: addressBook.SortAddressBookByFirstName(); break;
                     case 9: addressBook.SortAddressBookByCity(); break;
                     case 10: addressBook.SortAddressBookByState(); break;
-                    case 11: flag = false; break;
+                    case 11: addressBook.AddressBookFileWrite(); break;
+                    case 12: addressBook.AddressBookFileReader(); break;
+                    case 13: flag = false; break;
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace AddressBookSystem
@@ -10,6 +11,7 @@ namespace AddressBookSystem
         List<Contact> contactsList = new List<Contact>();
         Dictionary<string, Contact> addressBookDictonary = new Dictionary<string, Contact>();
         Dictionary<string, List<Contact>> addressBookDictonaryByCity = new Dictionary<string, List<Contact>>();
+        string AddressBookTextFilePath = "C:\\Users\\Rushi\\source\\repos\\AddressBookSystem\\AddressBookSystem\\AddressBookContactFiles\\AddressBookTextFile.txt";
 
         public void CreatContact()
         {
@@ -239,6 +241,41 @@ namespace AddressBookSystem
                 Console.WriteLine("Zip Code: " + contact.Value.Zipcode);
                 Console.WriteLine("PhoneNumber: " + contact.Value.PhoneNumber);
                 Console.WriteLine("E mail: " + contact.Value.Email);
+            }
+        }
+
+        public void AddressBookFileReader()
+        {
+            using (StreamReader streamReader = File.OpenText(AddressBookTextFilePath))
+            {
+                string printToConsole = "";
+                while((printToConsole = streamReader.ReadLine())!=null)
+                {
+                    Console.WriteLine(printToConsole);
+                }
+            }
+        }
+        
+        public void AddressBookFileWrite()
+        {
+            using (StreamWriter streamWriter =File.AppendText(AddressBookTextFilePath))
+            {
+                streamWriter.WriteLine("\nContact Details\n");
+
+                foreach (var contact in addressBookDictonary)
+                {
+                    streamWriter.WriteLine("\nFirst Name: " + contact.Value.FirstName);
+                    streamWriter.WriteLine("Last Name: " + contact.Value.LastName);
+                    streamWriter.WriteLine("Address: " + contact.Value.Address);
+                    streamWriter.WriteLine("City: " + contact.Value.City);
+                    streamWriter.WriteLine("State: " + contact.Value.State);
+                    streamWriter.WriteLine("Zip Code: " + contact.Value.Zipcode);
+                    streamWriter.WriteLine("PhoneNumber: " + contact.Value.PhoneNumber);
+                    streamWriter.WriteLine("E mail: " + contact.Value.Email);
+                }
+
+                streamWriter.Close();
+                Console.WriteLine(File.ReadAllText(AddressBookTextFilePath));
             }
         }
     }

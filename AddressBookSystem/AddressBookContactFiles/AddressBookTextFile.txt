@@ -1,0 +1,21 @@
+﻿
+Contact Details
+
+
+First Name: rushi
+Last Name: koshti
+Address: 3/5
+City: mumbai
+State: mh
+Zip Code: 4000123
+PhoneNumber: 12345678
+E mail: rushi.wrw
+
+First Name: shubham
+Last Name: kamble
+Address: 3/6
+City: mumbai
+State: mh
+Zip Code: 400078
+PhoneNumber: 12345678
+E mail: rushi.koshti
