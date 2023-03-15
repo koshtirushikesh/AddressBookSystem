@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AddressBookSystem
 {
@@ -23,13 +19,15 @@ namespace AddressBookSystem
                 Console.WriteLine("5. Search By city");
                 Console.WriteLine("6. view By city");
                 Console.WriteLine("7. Count By city");
-                Console.WriteLine("8. Sort Address book");
-                Console.WriteLine("9. Exit the program");
-                
+                Console.WriteLine("8. Sort Address book By First Name");
+                Console.WriteLine("9. Sort Address book By City Name");
+                Console.WriteLine("10. Sort Address book By State Name");
+                Console.WriteLine("11. Exit the program");
+
                 Console.Write("\nEnter option: ");
                 int option = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("");
-                
+
                 switch (option)
                 {
                     case 1: addressBook.CreatContact(); break;
@@ -39,7 +37,7 @@ namespace AddressBookSystem
                         string firstName = Console.ReadLine();
                         Console.Write("enter the last name of contact to Edit: ");
                         string lastName = Console.ReadLine();
-                        addressBook.Edit(firstName,lastName);
+                        addressBook.Edit(firstName, lastName);
                         addressBook.Display();
                         break;
 
@@ -48,13 +46,15 @@ namespace AddressBookSystem
                         firstName = Console.ReadLine();
                         Console.Write("enter the last name of contact to Delete: ");
                         lastName = Console.ReadLine();
-                        addressBook.Delete(firstName,lastName);
+                        addressBook.Delete(firstName, lastName);
                         break;
-                    case 5: addressBook.SearchByCity();break;
-                    case 6: addressBook.ViewByCity();break;
-                    case 7: addressBook.CountByCity();break;
-                    case 8: addressBook.SortAddressBook();break;
-                    case 9: flag = false; break;
+                    case 5: addressBook.SearchByCity(); break;
+                    case 6: addressBook.ViewByCity(); break;
+                    case 7: addressBook.CountByCity(); break;
+                    case 8: addressBook.SortAddressBookByFirstName(); break;
+                    case 9: addressBook.SortAddressBookByCity(); break;
+                    case 10: addressBook.SortAddressBookByState(); break;
+                    case 11: flag = false; break;
                 }
             }
         }

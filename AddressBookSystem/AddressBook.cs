@@ -211,5 +211,35 @@ namespace AddressBookSystem
                 Console.WriteLine("E mail: " + contact.Value.Email);
             }
         }
+
+        public void SortAddressBookByCity()
+        {
+            foreach (var contact in addressBookDictonary.OrderBy(x => x.Value.City))
+            {
+                Console.WriteLine("Last Name: " + contact.Value.FirstName);
+                Console.WriteLine("Last Name: " + contact.Value.LastName);
+                Console.WriteLine("Address: " + contact.Value.Address);
+                Console.WriteLine("City: " + contact.Value.City);
+                Console.WriteLine("State: " + contact.Value.State);
+                Console.WriteLine("Zip Code: " + contact.Value.Zipcode);
+                Console.WriteLine("PhoneNumber: " + contact.Value.PhoneNumber);
+                Console.WriteLine("E mail: " + contact.Value.Email);
+            }
+        }
+
+        public void SortAddressBookByState()
+        {
+            foreach (var contact in addressBookDictonary.OrderBy(x => x.Value.State))
+            {
+                Console.WriteLine("Last Name: " + contact.Value.FirstName);
+                Console.WriteLine("Last Name: " + contact.Value.LastName);
+                Console.WriteLine("Address: " + contact.Value.Address);
+                Console.WriteLine("City: " + contact.Value.City);
+                Console.WriteLine("State: " + contact.Value.State);
+                Console.WriteLine("Zip Code: " + contact.Value.Zipcode);
+                Console.WriteLine("PhoneNumber: " + contact.Value.PhoneNumber);
+                Console.WriteLine("E mail: " + contact.Value.Email);
+            }
+        }
     }
 }
