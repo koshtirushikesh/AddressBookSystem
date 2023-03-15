@@ -23,7 +23,8 @@ namespace AddressBookSystem
                 Console.WriteLine("5. Search By city");
                 Console.WriteLine("6. view By city");
                 Console.WriteLine("7. Count By city");
-                Console.WriteLine("8. Exit the program");
+                Console.WriteLine("8. Sort Address book");
+                Console.WriteLine("9. Exit the program");
                 
                 Console.Write("\nEnter option: ");
                 int option = Convert.ToInt32(Console.ReadLine());
@@ -52,7 +53,8 @@ namespace AddressBookSystem
                     case 5: addressBook.SearchByCity();break;
                     case 6: addressBook.ViewByCity();break;
                     case 7: addressBook.CountByCity();break;
-                    case 8: flag = false; break;
+                    case 8: addressBook.SortAddressBook();break;
+                    case 9: flag = false; break;
                 }
             }
         }

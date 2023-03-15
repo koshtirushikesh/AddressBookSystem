@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace AddressBookSystem
 {
@@ -56,14 +55,14 @@ namespace AddressBookSystem
             {
                 contactsList.Add(contact);
                 addressBookDictonary.Add(contact.FirstName + contact.LastName, contact);
-                
-                if(addressBookDictonaryByCity.ContainsKey(contact.City))
+
+                if (addressBookDictonaryByCity.ContainsKey(contact.City))
                 {
-                     addressBookDictonaryByCity[contact.City].Add(contact);
+                    addressBookDictonaryByCity[contact.City].Add(contact);
                 }
                 else
                 {
-                    addressBookDictonaryByCity.Add(contact.City,new List<Contact>());
+                    addressBookDictonaryByCity.Add(contact.City, new List<Contact>());
                     addressBookDictonaryByCity[contact.City].Add(contact);
                 }
                 Console.WriteLine("\nthis Person is successfully add to the collection.");
@@ -164,7 +163,7 @@ namespace AddressBookSystem
         {
             Console.Write("Enter the City Name: ");
             string CityName = Console.ReadLine();
-            Console.WriteLine("All the Contact Name of: " + CityName+"\n");
+            Console.WriteLine("All the Contact Name of: " + CityName + "\n");
             foreach (var contact in addressBookDictonaryByCity[CityName])
             {
                 Console.WriteLine("Name: " + contact.FirstName + " " + contact.LastName);
@@ -175,9 +174,9 @@ namespace AddressBookSystem
         {
             Console.Write("Enter the City Name: ");
             string CityName = Console.ReadLine();
-            Console.WriteLine("\nAll the Contact details of: " + CityName+"\n");
+            Console.WriteLine("\nAll the Contact details of: " + CityName + "\n");
 
-            foreach(var contact in addressBookDictonaryByCity[CityName])
+            foreach (var contact in addressBookDictonaryByCity[CityName])
             {
                 Console.WriteLine("\nContact Details\n" + "\n" + "First Name: " + contact.FirstName);
                 Console.WriteLine("Last Name: " + contact.LastName);
@@ -194,8 +193,23 @@ namespace AddressBookSystem
         {
             Console.Write("Enter the City Name: ");
             string CityName = Console.ReadLine();
-            int count = addressBookDictonaryByCity[CityName].Count(x => x.City == CityName);
-            Console.WriteLine("\nCity Name : "+CityName + ": No of Contact : " + count);
+            int count = addressBookDictonaryByCity[CityName].Count();
+            Console.WriteLine("\nCity Name : " + CityName + ": No of Contact : " + count);
+        }
+
+        public void SortAddressBookByFirstName()
+        {
+            foreach (var contact in addressBookDictonary.OrderBy(x => x.Value.FirstName))
+            {
+                Console.WriteLine("Last Name: " + contact.Value.FirstName);
+                Console.WriteLine("Last Name: " + contact.Value.LastName);
+                Console.WriteLine("Address: " + contact.Value.Address);
+                Console.WriteLine("City: " + contact.Value.City);
+                Console.WriteLine("State: " + contact.Value.State);
+                Console.WriteLine("Zip Code: " + contact.Value.Zipcode);
+                Console.WriteLine("PhoneNumber: " + contact.Value.PhoneNumber);
+                Console.WriteLine("E mail: " + contact.Value.Email);
+            }
         }
     }
 }
