@@ -26,7 +26,8 @@ namespace AddressBookSystem
                 Console.WriteLine("12. Read Text File");
                 Console.WriteLine("13. Write csv File");
                 Console.WriteLine("14. Read csv File");
-                Console.WriteLine("15. Exit the program");
+                Console.WriteLine("15. Read csv And Write Json File");
+                Console.WriteLine("16. Exit the program");
 
                 Console.Write("\nEnter option: ");
                 int option = Convert.ToInt32(Console.ReadLine());
@@ -62,7 +63,8 @@ namespace AddressBookSystem
                     case 12: addressBook.AddressBookFileReader(); break;
                     case 13: addressBook.AddressBookCSVFileWrite(); break;
                     case 14: addressBook.AddressBookCSVFileRead(); break;
-                    case 15: flag = false; break;
+                    case 15: addressBook.AddressBookCsvToJsonFileRead(); break;
+                    case 16: flag = false; break;
                 }
             }
         }
