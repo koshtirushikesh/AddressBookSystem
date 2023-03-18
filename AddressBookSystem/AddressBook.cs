@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -11,7 +13,8 @@ namespace AddressBookSystem
         List<Contact> contactsList = new List<Contact>();
         Dictionary<string, Contact> addressBookDictonary = new Dictionary<string, Contact>();
         Dictionary<string, List<Contact>> addressBookDictonaryByCity = new Dictionary<string, List<Contact>>();
-        string AddressBookTextFilePath = "C:\\Users\\Rushi\\source\\repos\\AddressBookSystem\\AddressBookSystem\\AddressBookContactFiles\\AddressBookTextFile.txt";
+        string addressBookTextFilePath = "C:\\Users\\Rushi\\source\\repos\\AddressBookSystem\\AddressBookSystem\\AddressBookContactFiles\\AddressBookTextFile.txt";
+        string addressBookCsvFilePath = "C:\\Users\\Rushi\\source\\repos\\AddressBookSystem\\AddressBookSystem\\AddressBookContactFiles\\AddressBook.csv";
 
         public void CreatContact()
         {
@@ -246,7 +249,7 @@ namespace AddressBookSystem
 
         public void AddressBookFileReader()
         {
-            using (StreamReader streamReader = File.OpenText(AddressBookTextFilePath))
+            using (StreamReader streamReader = File.OpenText(addressBookTextFilePath))
             {
                 string printToConsole = "";
                 while((printToConsole = streamReader.ReadLine())!=null)
@@ -258,7 +261,7 @@ namespace AddressBookSystem
         
         public void AddressBookFileWrite()
         {
-            using (StreamWriter streamWriter =File.AppendText(AddressBookTextFilePath))
+            using (StreamWriter streamWriter =File.AppendText(addressBookTextFilePath))
             {
                 streamWriter.WriteLine("\nContact Details\n");
 
@@ -275,7 +278,36 @@ namespace AddressBookSystem
                 }
 
                 streamWriter.Close();
-                Console.WriteLine(File.ReadAllText(AddressBookTextFilePath));
+                Console.WriteLine(File.ReadAllText(addressBookTextFilePath));
+            }
+        }
+
+        public void AddressBookCSVFileWrite()
+        {
+            using (var writer = new StreamWriter(addressBookCsvFilePath)) 
+            using(var csvWrite = new CsvWriter(writer , CultureInfo.InvariantCulture))
+            {
+                csvWrite.WriteRecords(contactsList);
+            }
+        }
+
+        public void AddressBookCSVFileRead()
+        {
+            using (var reader = new StreamReader(addressBookCsvFilePath))
+            using (var csvRead = new CsvReader(reader , CultureInfo.InvariantCulture))
+            {
+                var addressBookRecords = csvRead.GetRecords<Contact>().ToList();
+
+                foreach (var record in addressBookRecords)
+                {
+                    Console.WriteLine("\n"+record.FirstName);
+                    Console.WriteLine(record.LastName);
+                    Console.WriteLine(record.Address);
+                    Console.WriteLine(record.City);
+                    Console.WriteLine(record.State);
+                    Console.WriteLine(record.Zipcode);
+                    Console.WriteLine(record.PhoneNumber);
+                }
             }
         }
     }
